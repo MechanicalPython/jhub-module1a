@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    function inputjs() {
+      let enemyPos = document.getElementById("EnemyPos").value;
+      let enemyType = document.getElementById("EnemyType").value;
+      let effect = document.getElementById("desiredEffect").value;
+
+      let number_of_rounds = 100 * enemyPos * enemyType;
+      const number_of_barrels = effect * enemyType;
+      let rounds_per_barrel = Math.round(number_of_rounds / number_of_barrels);
+      let duration_of_fire_mission = Math.round(((number_of_rounds / number_of_barrels) * 20)/60);
+      let number_of_pallets = number_of_rounds / 25;
+
+      document.getElementById("output_barrels").innerHTML = `Number of barrels: ${number_of_barrels}.`;
+      document.getElementById("output_rounds").innerHTML = `Number of shells required per gun: ${rounds_per_barrel}. (${number_of_rounds} total)`;
+      document.getElementById("output_duration").innerHTML = `Duration of fire mission: ${duration_of_fire_mission} minutes.`;
+      document.getElementById("output_pallets").innerHTML = `Number of pallets for resupply: ${number_of_pallets}.`;
+    }
+</script>
+
+<style>
+    @media (prefers-color-scheme: light) {
+    body {
+        background-color: white;
+        color: black;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #363B40;
+        color: #b8bfc6;
+    }
+    a:visited {
+        color: green;
+    }
+}
+
+html {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+}
+
+h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+table {
+    width: 90%;
+    text-align: center;
+}
+
+th {
+    border-bottom: 1px solid;
+}
+
+button:hover {
+    color: gray;
+}
+
+.centered {
+    width: 100%;
+    justify-content: center;
+}
+
+
+</style>
+<head>
+    <title>Arty Logs Calculator</title>
+</head>
+<body>
+<h1>Artillery logistics calculations</h1>
+<p style="text-align: center">
+    <img src="https://aw.my.games/sites/aw.my.com/files/u183517/265793.jpg" alt="Picture of AS90 firing" width="500"><br>
+    An online tool, so you can quickly determine how many warheads on foreheads are required for your mission
+    requirements!
+</p>
+
+
+<h2>Inputs</h2>
+<select name="EnemyPos" id="EnemyPos">
+    <option id="S3" value="5">Stage 3 Trench</option>
+    <option id="S2" value="4">Stage 2 Trench</option>
+    <option id="S1" value="3">Stage 1 Trench</option>
+    <option id="Closed" value="2">Closed Terrain</option>
+    <option id="Open" value="1">Open Terrain</option>
+</select>
+<br>
+<select name="EnemyType" id="EnemyType">
+    <option id="lightInf" value="1">Light Infantry</option>
+    <option id="mechInf" value="2">Mechnised Infantry</option>
+    <option id="armouredInf" value="4">Armoured Infantry</option>
+    <option id="Armour" value="10">Armour</option>
+</select>
+<br>
+<select name="desiredEffect" id="desiredEffect">
+    <option id="harrass" value="2">Harrassment</option>
+    <option id="neutralise" value="4">Neutralise</option>
+    <option id="destroy" value="8">Destruction</option>
+    <option id="anhilation" value="12">Anhiliation</option>
+</select>
+<br>
+<button onclick="inputjs()">Submit</button>
+
+
+<h2>Outputs</h2>
+<ul>
+    <li id="output_barrels">Number of barrels:</li>
+    <li id="output_rounds">Number of rounds per barrel: (total rounds required: )</li>
+    <li id="output_duration">Duration of fire mission:</li>
+    <li id="output_pallets">Number of pallets for resupply:</li>
+</ul>
+
+</body>
+</html>
+
